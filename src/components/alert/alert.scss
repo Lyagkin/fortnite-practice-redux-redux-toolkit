@@ -1,0 +1,20 @@
+@import "../../styles/cssvariables.scss";
+
+.alert-container {
+  position: fixed;
+  top: 15rem;
+  right: 3rem;
+  width: 12rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  &-item {
+    font-size: 1rem;
+    line-height: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: $textColor;
+  }
+}

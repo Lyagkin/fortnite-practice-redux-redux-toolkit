@@ -1,0 +1,47 @@
+@import "../../../styles/cssvariables.scss";
+
+.cart-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  padding: 0.7rem 2rem 0.7rem 2rem;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  .description-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    .button-wrapper {
+      padding: 0.3rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      background-color: $textColor;
+      .button-number {
+        border: none;
+        font-size: 1.4rem;
+        padding: 0.1rem 0.5rem;
+        color: $textColor;
+        background-color: $backgroundColor;
+        cursor: pointer;
+      }
+    }
+  }
+  &-delete {
+    img {
+      width: 1.3rem;
+      height: 1.3rem;
+      display: block;
+      cursor: pointer;
+    }
+  }
+}
+
+.active {
+  background-color: $backgroundColor;
+  color: $textColor;
+}

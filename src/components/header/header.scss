@@ -1,0 +1,22 @@
+@import "../../styles/cssvariables.scss";
+@import "../../styles/mixins.scss";
+
+nav {
+  padding: 0 1rem;
+}
+
+.navigate {
+  background-color: $backgroundColor;
+  height: 7rem;
+  &-wrapper {
+    @include flex;
+    a {
+      color: $textColor;
+      text-decoration: none;
+      font-size: 2rem;
+    }
+    ul {
+      list-style: none;
+    }
+  }
+}

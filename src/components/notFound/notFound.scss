@@ -1,0 +1,20 @@
+@import "../../styles/cssvariables.scss";
+
+.error {
+  &-title {
+    text-align: center;
+    font-size: 3rem;
+  }
+  &-button {
+    display: block;
+    margin: 3rem auto;
+    border: none;
+    background-color: $backgroundColor;
+    color: $textColor;
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    padding: 0 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+}

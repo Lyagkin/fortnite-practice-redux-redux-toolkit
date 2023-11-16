@@ -1,0 +1,19 @@
+@import "../../styles/cssvariables.scss";
+@import "../../styles/mixins.scss";
+
+.footer {
+  background-color: $backgroundColor;
+  height: 6.4rem;
+  &-copyright {
+    height: inherit;
+  }
+  &-wrapper {
+    @include flex;
+    color: $textColor;
+    font-size: 1.6rem;
+    a {
+      color: $textColor;
+      text-decoration: none;
+    }
+  }
+}

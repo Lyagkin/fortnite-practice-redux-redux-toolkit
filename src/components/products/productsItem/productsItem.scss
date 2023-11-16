@@ -1,0 +1,53 @@
+@import "../../../styles/cssvariables.scss";
+
+.card {
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: 0rem 0rem 1rem 0.1rem rgba(0, 0, 0, 1);
+  &-image {
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  &-title {
+    padding-top: 1rem;
+    font-size: 1.6rem;
+    text-align: center;
+    display: block;
+  }
+  &-content {
+    flex-grow: 1;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    p {
+      text-align: center;
+      font-size: 1.2rem;
+    }
+  }
+  &-action {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .btn {
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 0.5rem;
+      line-height: 3.2rem;
+      padding: 0.2rem 1.3rem;
+      box-shadow: 0rem 0rem 0.5rem 0.2rem rgba(0, 0, 0, 1);
+      background-color: $backgroundColor;
+      color: $textColor;
+      cursor: pointer;
+    }
+    span {
+      font-size: 1.6rem;
+    }
+  }
+}
