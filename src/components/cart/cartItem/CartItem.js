@@ -1,18 +1,20 @@
+import { useDispatch } from "react-redux";
+
+import {
+  removeProductByRedux,
+  addingOrderProductByRedux,
+  subtractingOrderProductByRedux,
+} from "../../../actions";
+
 import { useMemo } from "react";
 import cross from "../../../resources/icons/cross.svg";
 
 import "./cartItem.scss";
 
 const CartItem = (props) => {
-  const {
-    mainId,
-    displayName,
-    price,
-    number,
-    removeProduct,
-    addingOrderProduct,
-    subtractingOrderProduct,
-  } = props;
+  const { mainId, displayName, price, number } = props;
+
+  const dispatch = useDispatch();
 
   const buttons = [
     {
@@ -36,9 +38,9 @@ const CartItem = (props) => {
         className={item.className}
         onClick={() => {
           if (item.action === "adding") {
-            addingOrderProduct();
+            dispatch(addingOrderProductByRedux(mainId));
           } else {
-            subtractingOrderProduct();
+            dispatch(subtractingOrderProductByRedux(mainId));
           }
         }}
       >
@@ -57,7 +59,11 @@ const CartItem = (props) => {
       </div>
 
       <span className="cart-list-item-delete">
-        <img src={cross} alt="cross" onClick={removeProduct} />
+        <img
+          src={cross}
+          alt="cross"
+          onClick={() => dispatch(removeProductByRedux(mainId))}
+        />
       </span>
     </li>
   );

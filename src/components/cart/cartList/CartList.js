@@ -1,10 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  togglingCart,
-  removeProductByRedux,
-  addingOrderProductByRedux,
-  subtractingOrderProductByRedux,
-} from "../../../actions";
+import { togglingCart } from "../../../actions";
 import CartItem from "../cartItem/CartItem";
 import { ReactComponent as Cross } from "../../../resources/icons/cross.svg";
 
@@ -21,34 +16,6 @@ const CartList = () => {
     0,
   );
 
-  const addingOrderProduct = (id) => {
-    const newOrder = order.map((item) => {
-      if (item.mainId === id) {
-        return { ...item, number: item.number + 1 };
-      } else {
-        return item;
-      }
-    });
-
-    dispatch(addingOrderProductByRedux(newOrder));
-  };
-
-  const subtractingOrderProduct = (id) => {
-    const newOrder = order.map((item) => {
-      if (item.mainId === id) {
-        return { ...item, number: item.number > 0 ? item.number - 1 : 0 };
-      } else {
-        return item;
-      }
-    });
-
-    dispatch(subtractingOrderProductByRedux(newOrder));
-  };
-
-  const removeProduct = (id) => {
-    dispatch(removeProductByRedux(id));
-  };
-
   return (
     <ul className="cart-list">
       <li className="cart-list-item active">
@@ -58,15 +25,7 @@ const CartList = () => {
         </span>
       </li>
       {numberOfOrder ? (
-        order.map((item) => (
-          <CartItem
-            key={item.mainId}
-            removeProduct={() => removeProduct(item.mainId)}
-            addingOrderProduct={() => addingOrderProduct(item.mainId)}
-            subtractingOrderProduct={() => subtractingOrderProduct(item.mainId)}
-            {...item}
-          />
-        ))
+        order.map((item) => <CartItem key={item.mainId} {...item} />)
       ) : (
         <li className="cart-list-item">Корзина пуста</li>
       )}
