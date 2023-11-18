@@ -7,10 +7,6 @@ const ProductsList = () => {
   // console.log("list");
   const products = useSelector((state) => state.products);
 
-  const showSome = () => {
-    // console.log("rerender children");
-  };
-
   if (products.length === 0) {
     return (
       <h3 style={{ textAlign: "center", fontSize: "3rem" }}>No Products!</h3>
@@ -18,9 +14,7 @@ const ProductsList = () => {
   }
 
   const content = products.map((product) => {
-    return (
-      <ProductsItem key={product.mainId} {...product} showSome={showSome} />
-    );
+    return <ProductsItem key={product.mainId} {...product} />;
   });
 
   return <div className="products">{content}</div>;

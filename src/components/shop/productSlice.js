@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import useHttp from "../../hook/http.hook";
 
 const initialState = {
   products: [],
@@ -9,20 +10,15 @@ const initialState = {
   order: [],
 };
 
+export const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
+  const request = useHttp();
+  return request("https://fortniteapi.io/v2/shop?lang=ru");
+});
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    productsFetching: (state) => {
-      state.productsLoadingStatus = "loading";
-    },
-    productsFetched: (state, action) => {
-      state.productsLoadingStatus = "idle";
-      state.products = action.payload;
-    },
-    productsFetchingErrors: (state) => {
-      state.productsLoadingStatus = "error";
-    },
     togglingCart: (state) => {
       state.isCartShow = !state.isCartShow;
     },
@@ -69,15 +65,29 @@ const productsSlice = createSlice({
       seacrhingProduct.number > 0 ? (seacrhingProduct.number -= 1) : 0;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.productsLoadingStatus = "loading";
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.productsLoadingStatus = "idle";
+
+        action.payload.shop
+          ? (state.products = action.payload.shop)
+          : (state.products = []);
+      })
+      .addCase(fetchProducts.rejected, (state) => {
+        state.productsLoadingStatus = "error";
+      })
+      .addDefaultCase(() => {});
+  },
 });
 
 const { actions, reducer } = productsSlice;
 
 export default reducer;
 export const {
-  productsFetching,
-  productsFetched,
-  productsFetchingErrors,
   togglingCart,
   showAlertName,
   addedProductFromRedux,

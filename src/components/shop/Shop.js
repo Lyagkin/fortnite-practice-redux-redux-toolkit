@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import useHttp from "../../hook/http.hook";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct } from "../../actions";
+import { fetchProducts } from "./productSlice";
 import Spiner from "../spinner/Spiner";
 import NotFound from "../notFound/NotFound";
 import ProductsList from "../products/productsList/ProductsList";
@@ -17,10 +16,8 @@ const Shop = () => {
   );
   const dispatch = useDispatch();
 
-  const request = useHttp();
-
   useEffect(() => {
-    dispatch(fetchProduct(request));
+    dispatch(fetchProducts());
   }, []);
 
   const spinner = productsLoadingStatus === "loading" ? <Spiner /> : null;
