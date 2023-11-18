@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addedProductFromRedux, addedProductId } from "../../../actions";
+import { addedProductFromRedux } from "../../shop/productSlice";
 import imgNotFound from "../../../resources/img/icon-image-not-found-free-vector.jpg";
 
 // import { motion } from "framer-motion";
@@ -36,7 +36,6 @@ const ProductsItem = (props) => {
           className="btn"
           onClick={() => {
             dispatch(addedProductFromRedux(mainId));
-            dispatch(addedProductId(mainId));
           }}
         >
           Купить

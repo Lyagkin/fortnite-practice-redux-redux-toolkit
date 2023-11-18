@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { showAlertName } from "../../actions";
+import { showAlertName } from "../shop/productSlice";
 import { useEffect } from "react";
 
 import "./alert.scss";

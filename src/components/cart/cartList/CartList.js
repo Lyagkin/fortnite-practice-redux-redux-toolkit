@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { togglingCart } from "../../../actions";
+import { togglingCart } from "../../shop/productSlice";
 import CartItem from "../cartItem/CartItem";
 import { ReactComponent as Cross } from "../../../resources/icons/cross.svg";
 

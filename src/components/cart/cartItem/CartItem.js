@@ -4,7 +4,7 @@ import {
   removeProductByRedux,
   addingOrderProductByRedux,
   subtractingOrderProductByRedux,
-} from "../../../actions";
+} from "../../shop/productSlice";
 
 import { useMemo } from "react";
 import cross from "../../../resources/icons/cross.svg";

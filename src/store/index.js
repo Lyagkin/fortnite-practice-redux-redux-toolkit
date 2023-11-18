@@ -1,28 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productReducer from "../reducers";
 
-// const middleWare =
-//   (extraArgument) =>
-//   ({ dispatch, getState }) =>
-//   (next) =>
-//   (action) => {
-//     if (typeof action === "function") {
-//       return action(dispatch, getState, extraArgument);
-//     }
-//     return next(action);
-//   };
-
-// const store = createStore(
-//   reducer,
-//   compose(
-//     applyMiddleware(ReduxThunk),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//       window.__REDUX_DEVTOOLS_EXTENSION__(),
-//   ),
-// );
+import reducer from "../components/shop/productSlice";
 
 const store = configureStore({
-  reducer: productReducer,
+  reducer: reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   // eslint-disable-next-line
   devTools: process.env.NODE_ENV !== "production",
