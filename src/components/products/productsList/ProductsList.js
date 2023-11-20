@@ -1,3 +1,5 @@
+import { selectAll } from "../../shop/productSlice";
+
 import { useSelector } from "react-redux";
 import ProductsItem from "../productsItem/ProductsItem";
 
@@ -5,7 +7,8 @@ import "./productsList.scss";
 
 const ProductsList = () => {
   // console.log("list");
-  const products = useSelector((state) => state.products);
+
+  const products = useSelector(selectAll);
 
   if (products.length === 0) {
     return (

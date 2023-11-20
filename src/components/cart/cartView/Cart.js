@@ -6,8 +6,8 @@ import cart from "../../../resources/icons/cart.svg";
 import "./cart.scss";
 
 const Cart = () => {
-  const order = useSelector((state) => state.order);
-  const alertName = useSelector((state) => state.alertName);
+  const order = useSelector((state) => state.products.order);
+  const alertName = useSelector((state) => state.products.alertName);
 
   const numberOfProduct = order.length;
 

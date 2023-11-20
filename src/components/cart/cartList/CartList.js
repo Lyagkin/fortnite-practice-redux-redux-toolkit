@@ -6,7 +6,7 @@ import { ReactComponent as Cross } from "../../../resources/icons/cross.svg";
 import "./cartList.scss";
 
 const CartList = () => {
-  const order = useSelector((state) => state.order);
+  const order = useSelector((state) => state.products.order);
   const dispatch = useDispatch();
 
   const numberOfOrder = order.length;

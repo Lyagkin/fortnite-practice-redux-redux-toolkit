@@ -12,7 +12,7 @@ import "./shop.scss";
 const Shop = () => {
   // console.log("shop");
   const productsLoadingStatus = useSelector(
-    (state) => state.productsLoadingStatus,
+    ({ products }) => products.productsLoadingStatus,
   );
   const dispatch = useDispatch();
 
@@ -26,11 +26,11 @@ const Shop = () => {
 
   return (
     <main className="shop container">
-      <Cart />
+      {/* <Cart /> */}
       {spinner}
       {content}
       {error}
-      <CartListWrapper />
+      {/* <CartListWrapper /> */}
     </main>
   );
 };

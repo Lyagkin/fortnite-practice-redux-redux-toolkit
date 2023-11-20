@@ -1,14 +1,32 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createEntityAdapter,
+} from "@reduxjs/toolkit";
+
 import useHttp from "../../hook/http.hook";
 
-const initialState = {
-  products: [],
+// const initialState = {
+//   products: [],
+//   productsLoadingStatus: "waiting",
+//   isCartShow: false,
+//   alertName: "",
+//   productId: undefined,
+//   order: [],
+// };
+
+const productsAdapter = createEntityAdapter({
+  selectId: (product) => product.mainId,
+});
+
+const initialState = productsAdapter.getInitialState({
   productsLoadingStatus: "waiting",
   isCartShow: false,
   alertName: "",
-  productId: undefined,
   order: [],
-};
+});
+
+// console.log(initialState);
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
   const request = useHttp();
@@ -73,9 +91,12 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.productsLoadingStatus = "idle";
 
-        action.payload.shop
-          ? (state.products = action.payload.shop)
-          : (state.products = []);
+        let products;
+        action.payload
+          ? (products = action.payload.shop.slice(0, 12))
+          : (products = []);
+
+        productsAdapter.setAll(state, products);
       })
       .addCase(fetchProducts.rejected, (state) => {
         state.productsLoadingStatus = "error";
@@ -87,6 +108,11 @@ const productsSlice = createSlice({
 const { actions, reducer } = productsSlice;
 
 export default reducer;
+
+export const { selectAll } = productsAdapter.getSelectors(
+  (state) => state.products,
+);
+
 export const {
   togglingCart,
   showAlertName,
