@@ -1,0 +1,22 @@
+.main {
+  &__wrapper {
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  &__title {
+    text-transform: uppercase;
+    font-size: 2.4rem;
+  }
+  &__img {
+    img {
+      display: block;
+      width: 100%;
+      max-height: calc(100vh - 70px - 64px - 110px - 32px);
+      margin: 0 auto;
+      object-fit: contain;
+    }
+  }
+}

@@ -1,4 +1,6 @@
-import { useDispatch } from "react-redux";
+import { selectAll } from "../../shop/productSlice";
+
+import { useDispatch, useSelector } from "react-redux";
 import { addedProductFromRedux } from "../../shop/productSlice";
 import imgNotFound from "../../../resources/img/icon-image-not-found-free-vector.jpg";
 
@@ -8,11 +10,14 @@ import "./productsItem.scss";
 
 const ProductsItem = (props) => {
   // console.log("render item");
-
-  const dispatch = useDispatch();
-
   const { mainId, displayName, displayDescription, price, displayAssets } =
     props;
+
+  const products = useSelector(selectAll);
+
+  const compareProduct = products.find((item) => item.mainId === mainId);
+
+  const dispatch = useDispatch();
 
   const image =
     displayAssets.length !== 0 ? displayAssets[0].full_background : imgNotFound;
@@ -35,7 +40,7 @@ const ProductsItem = (props) => {
           // }}
           className="btn"
           onClick={() => {
-            dispatch(addedProductFromRedux(mainId));
+            dispatch(addedProductFromRedux(compareProduct));
           }}
         >
           Купить

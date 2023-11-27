@@ -7,6 +7,8 @@ import ProductsList from "../products/productsList/ProductsList";
 import Cart from "../cart/cartView/Cart";
 import CartListWrapper from "../cartListWrapper/CartListWrapper";
 
+import { useGetProductsQuery } from "../../api/apiSlice";
+
 import "./shop.scss";
 
 const Shop = () => {
@@ -20,17 +22,21 @@ const Shop = () => {
     dispatch(fetchProducts());
   }, []);
 
+  const { data: products = [], isLoading, isError } = useGetProductsQuery();
+
+  console.log(products.shop);
+
   const spinner = productsLoadingStatus === "loading" ? <Spiner /> : null;
   const content = productsLoadingStatus === "idle" ? <ProductsList /> : null;
   const error = productsLoadingStatus === "error" ? <NotFound /> : null;
 
   return (
     <main className="shop container">
-      {/* <Cart /> */}
+      <Cart />
       {spinner}
       {content}
       {error}
-      {/* <CartListWrapper /> */}
+      <CartListWrapper />
     </main>
   );
 };

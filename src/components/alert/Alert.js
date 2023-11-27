@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import "./alert.scss";
 
 const Alert = () => {
-  const alertName = useSelector((state) => state.alertName);
+  const alertName = useSelector((state) => state.products.alertName);
   const dispatch = useDispatch();
 
   const closeAlert = () => {

@@ -17,6 +17,15 @@ nav {
     }
     ul {
       list-style: none;
+      display: flex;
+      gap: 0.5rem;
+      li {
+        &:hover {
+          a {
+            color: #000;
+          }
+        }
+      }
     }
   }
 }

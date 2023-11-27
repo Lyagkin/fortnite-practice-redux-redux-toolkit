@@ -6,15 +6,6 @@ import {
 
 import useHttp from "../../hook/http.hook";
 
-// const initialState = {
-//   products: [],
-//   productsLoadingStatus: "waiting",
-//   isCartShow: false,
-//   alertName: "",
-//   productId: undefined,
-//   order: [],
-// };
-
 const productsAdapter = createEntityAdapter({
   selectId: (product) => product.mainId,
 });
@@ -25,8 +16,6 @@ const initialState = productsAdapter.getInitialState({
   alertName: "",
   order: [],
 });
-
-// console.log(initialState);
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
   const request = useHttp();
@@ -45,19 +34,15 @@ const productsSlice = createSlice({
     },
     addedProductFromRedux: (state, action) => {
       const addedProduct = state.order.find(
-        (item) => item.mainId === action.payload,
-      );
-
-      const compareProduct = state.products.find(
-        (item) => item.mainId === action.payload,
+        (item) => item.mainId === action.payload.mainId,
       );
 
       if (!addedProduct) {
         state.order.push({
-          ...compareProduct,
+          ...action.payload,
           number: 1,
         });
-        state.alertName = compareProduct.displayName;
+        state.alertName = action.payload.displayName;
       } else {
         addedProduct.number += 1;
         state.alertName = addedProduct.displayName;
@@ -107,7 +92,7 @@ const productsSlice = createSlice({
 
 const { actions, reducer } = productsSlice;
 
-export default reducer;
+export { reducer };
 
 export const { selectAll } = productsAdapter.getSelectors(
   (state) => state.products,
